@@ -16,4 +16,14 @@ const schema = new mongoose.Schema({
   publishDate: Date,
 });
 
-export default mongoose.model('Book', schema);
+const Book = mongoose.model('Book', schema)
+
+const schemaa = new mongoose.Schema({
+  name: String,
+  age: Number,
+  nation: String,
+});
+
+const Authors = mongoose.model('Author', schemaa)
+
+export { Book, Authors };

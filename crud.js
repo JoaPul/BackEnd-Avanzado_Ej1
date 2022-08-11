@@ -1,5 +1,6 @@
-import Book from './models/Book.js';
+import { Book, Authors } from './models/Book.js';
 
+//? Books
 // TODO: crear
 const createBook = async () => {
   await Book.create({
@@ -36,4 +37,34 @@ const deleteBook = async () => {
   });
 };
 
-export { createBook, updateBook, deleteBook, readBook };
+//?Authors
+const createAuthor = async () => {
+  await Authors.create({
+    name: 'Octavio Paz',
+    age: 84,
+    nation: 'Mexico',
+  });
+};
+
+const updateAuthor = async () => {
+  await Authors.updateOne({
+    name: 'Octavio Paz',
+  }, {
+    age: 85,
+  });
+};
+
+const readAuthor = async () => {
+  console.log(await Authors.find({
+    nation: 'Mexico',
+  }));
+};
+
+const deleteAuthor = async () => {
+  await Authors.deleteMany({
+    age: 85,
+  });
+};
+
+
+export { createBook, updateBook, deleteBook, readBook, createAuthor, updateAuthor, readAuthor, deleteAuthor };
