@@ -1,6 +1,6 @@
 // para borrar unn archivo (carpeta con cosas dentro) desde git bash poner rm -R "nombre de carpeta"
 import mongoose from "mongoose";
-import Book from './models/Book.js';
+import { createBook, deleteBook, readBook, updateBook } from './crud.js'
 
 const db = mongoose.connection;
 
@@ -20,23 +20,31 @@ db.on('error', () => {
   console.log('ha ocurrido un error en la conexion');
 });
 
-mongoose.connect('mongodb://localhost:27017/test', () => {
+mongoose.connect('mongodb+srv://usuario:LLamarada@cluster0.stgxm5y.mongodb.net/Books?retryWrites=true&w=majority', async () => {
   console.log('Callback de función connect');
-  /*
-  * TODO
-  * 1.- crear un libro
-  * 2.- Actualizar libro
-  * 3.- Leer libro(consola)
-  * 4.- Eliminar
-  */
-  Book.create({
-    author: 'Isaac',
-    title: 'Como programar en 1 día',
-    edition: '2022 g13',
-    isbn: '01823718023u1',
-    pages: 10,
-    publishDate: new Date(),
-  });
+
+  // Books
+  try {
+    // crear Book
+    await createBook();
+    // update Book
+    await updateBook();
+    // read Book
+    await readBook();
+    // delete Book
+    await deleteBook();
+  } catch (error) {
+    console.log("ha ocurrido un error", error);
+  }
+
+  // coleccion de autores
+  try {
+
+  } catch (error) {
+
+  }
+
+
 });
 
 
